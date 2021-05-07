@@ -1,4 +1,4 @@
-import { GetStaticProps } from "next";
+import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
 
@@ -20,9 +20,18 @@ export default function Home() {
         </p>
 
         <div>
+          <Link href="/legal/privacy">
+            <a>Privacy &rarr;</a>
+          </Link>
+
+          <Link href="/honda/civic">
+            <a>Honda Civic &rarr;</a>
+          </Link>
+
           <Link href="/docs">
             <a>Documentation &rarr;</a>
           </Link>
+
           <p>Find in-depth information about Next.js features and API.</p>
 
           <Link href="/learn/start">
@@ -51,5 +60,12 @@ export const getStaticProps: GetStaticProps = async ({}) => {
       title: "hi",
     },
     revalidate: 60,
+  };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [],
+    fallback: "blocking",
   };
 };
