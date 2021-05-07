@@ -4,35 +4,8 @@ module.exports = {
       fallback: [
         {
           source: "/:makeSlug/:modelSlug",
-          destination: "/:host/overview/:makeSlug/:modelSlug",
-          has: [
-            {
-              type: "host",
-              value: "(?<host>.*)",
-            },
-          ],
+          destination: "/overview/:makeSlug/:modelSlug",
         },
-        {
-          source: "/:path*",
-          destination: "/:host/:path*",
-          has: [
-            {
-              type: "host",
-              value: "(?<host>.*)",
-            },
-          ],
-        },
-        {
-          source: "/",
-          destination: "/:host",
-          has: [
-            {
-              type: "host",
-              value: "(?<host>.*)",
-            },
-          ],
-        },
-
         {
           source: "/learn/:doc",
           destination: "/learn/variantB/:doc",
@@ -51,7 +24,19 @@ module.exports = {
       ],
     };
   },
-  // future: {
-  //   webpack5: true,
-  // },
+  i18n: {
+    locales: ["truecar", "pnc"],
+    domains: [
+      {
+        domain: "pnc.local.truecardev.com",
+        defaultLocale: "pnc",
+      },
+      {
+        domain: "www.local.truecardev.com",
+        defaultLocale: "truecar",
+      },
+    ],
+    defaultLocale: "truecar",
+    localeDetection: false,
+  },
 };
