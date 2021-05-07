@@ -43,7 +43,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({
     props: {
       makeSlug: params?.makeSlug ?? "",
       modelSlug: params?.modelSlug ?? "",
-      feature: params?.feature ?? "",
+      feature: "challenger",
       locale: locale ?? "",
     },
     revalidate: 60,

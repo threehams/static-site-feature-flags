@@ -1,10 +1,26 @@
 module.exports = {
   async rewrites() {
     return {
+      afterFiles: [
+        {
+          source: "/",
+          destination: "/home/truecar/",
+          has: [
+            {
+              type: "host",
+              value: "www.local.truecardev.com",
+            },
+          ],
+        },
+        {
+          source: "/",
+          destination: "/home/default/",
+        },
+      ],
       fallback: [
         {
-          source: "/:makeSlug/:modelSlug",
-          destination: "/overview/feature1challenger/:makeSlug/:modelSlug",
+          source: "/:makeSlug",
+          destination: "/overview/:makeSlug/challenger",
           has: [
             {
               type: "cookie",
@@ -14,8 +30,8 @@ module.exports = {
           ],
         },
         {
-          source: "/:makeSlug/:modelSlug",
-          destination: "/overview/feature1control/:makeSlug/:modelSlug",
+          source: "/:makeSlug",
+          destination: "/overview/:makeSlug/control",
           has: [
             {
               type: "cookie",
@@ -25,8 +41,8 @@ module.exports = {
           ],
         },
         {
-          source: "/learn/:doc",
-          destination: "/learn/variantB/:doc",
+          source: "/:makeSlug/:modelSlug",
+          destination: "/overview/:makeSlug/:modelSlug/challenger",
           has: [
             {
               type: "cookie",
@@ -36,8 +52,15 @@ module.exports = {
           ],
         },
         {
-          source: "/learn/:doc",
-          destination: "/learn/variantA/:doc",
+          source: "/:makeSlug/:modelSlug",
+          destination: "/overview/:makeSlug/:modelSlug/control",
+          has: [
+            {
+              type: "cookie",
+              key: "critical_flags",
+              value: "feature1control",
+            },
+          ],
         },
       ],
     };

@@ -6,13 +6,13 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Create Next App</title>
+        <title>TrueCar Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
         <h1 className="mb-4">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Welcome to TrueCar <a href="https://nextjs.org">Next.js!</a>
         </h1>
 
         <p>
@@ -24,8 +24,20 @@ export default function Home() {
             <a>Privacy &rarr;</a>
           </Link>
 
+          <Link href="/honda">
+            <a>Honda &rarr;</a>
+          </Link>
+
+          <Link href="/honda/deals">
+            <a>Honda Deals &rarr;</a>
+          </Link>
+
           <Link href="/honda/civic">
             <a>Honda Civic &rarr;</a>
+          </Link>
+
+          <Link href="/honda/civic/reviews">
+            <a>Honda Reviews &rarr;</a>
           </Link>
 
           <Link href="/docs">
