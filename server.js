@@ -12,7 +12,7 @@ app.prepare().then(() => {
     let variant = Math.random() > 0.5 ? "challenger" : "control";
     if (!req.headers.cookie) {
       req.headers.cookie = `critical_flags=feature1${variant}`;
-      res.setHeader("Set-Cookie", `critical_flags=feature1${variant}`);
+      res.setHeader("Set-Cookie", `critical_flags=feature1${variant};Path=/`);
     }
     // Be sure to pass `true` as the second argument to `url.parse`.
     // This tells it to parse the query portion of the URL.

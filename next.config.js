@@ -4,7 +4,25 @@ module.exports = {
       fallback: [
         {
           source: "/:makeSlug/:modelSlug",
-          destination: "/overview/:makeSlug/:modelSlug",
+          destination: "/overview/feature1challenger/:makeSlug/:modelSlug",
+          has: [
+            {
+              type: "cookie",
+              key: "critical_flags",
+              value: "feature1challenger",
+            },
+          ],
+        },
+        {
+          source: "/:makeSlug/:modelSlug",
+          destination: "/overview/feature1control/:makeSlug/:modelSlug",
+          has: [
+            {
+              type: "cookie",
+              key: "critical_flags",
+              value: "feature1control",
+            },
+          ],
         },
         {
           source: "/learn/:doc",
@@ -38,5 +56,11 @@ module.exports = {
     ],
     defaultLocale: "truecar",
     localeDetection: false,
+  },
+  typescript: {
+    // Do not block local builds on TS errors
+    ignoreDevErrors: true,
+    // Check for TS errors in CI instead of blocking the production build
+    ignoreBuildErrors: true,
   },
 };
