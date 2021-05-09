@@ -1,19 +1,18 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { delay } from "../../../../lib/delay";
+import { delay } from "../../../lib/delay";
 
 type Props = {
-  makeSlug: string;
-  feature: string;
   locale: string;
+  paymentType: string;
 };
-const MakeOverview = ({ makeSlug, feature, locale }: Props) => {
+const DealPage = ({ paymentType, locale }: Props) => {
   const { pathname } = useRouter();
 
   return (
     <div>
-      welcome to {makeSlug} make overview on {feature} on partner {locale}
+      welcome to {paymentType} calculator on partner {locale}
       the pathname is {pathname}
       <div>
         <Link href="/">
@@ -28,17 +27,11 @@ export const getStaticProps: GetStaticProps<Props> = async ({
   params,
   locale,
 }) => {
-  await delay(1000, "make overview control");
-  if (params?.makeSlug !== "honda") {
-    return {
-      notFound: true,
-    };
-  }
-
+  await delay(1000, "calculator");
   return {
     props: {
-      makeSlug: params.makeSlug,
-      feature: "control",
+      paymentType:
+        typeof params?.paymentType === "string" ? params.paymentType : "",
       locale: locale ?? "",
     },
     revalidate: 60,
@@ -52,4 +45,4 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export default MakeOverview;
+export default DealPage;

@@ -10,7 +10,7 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
   createServer((req, res) => {
     let variant = Math.random() > 0.5 ? "challenger" : "control";
-    if (!req.headers.cookie) {
+    if (!req.headers.cookie || !req.headers.cookie.includes("critical_flags")) {
       req.headers.cookie = `critical_flags=feature1${variant}`;
       res.setHeader("Set-Cookie", `critical_flags=feature1${variant};Path=/`);
     }

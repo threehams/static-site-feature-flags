@@ -1,4 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from "next";
+import { delay } from "../lib/delay";
 
 type Props = {
   title: string;
@@ -8,7 +9,7 @@ const Docs = ({ title }: Props) => {
 };
 
 export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
-  console.log(params);
+  await delay(1000, "docs");
   return {
     props: {
       title: "docs",

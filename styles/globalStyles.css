@@ -4,6 +4,7 @@ body {
 }
 
 a {
+  display: block;
   color: #343434;
   text-decoration: underline;
 }

@@ -1,6 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
+import { delay } from "../../../lib/delay";
 
 export default function Home() {
   return (
@@ -24,6 +25,14 @@ export default function Home() {
             <a>Privacy &rarr;</a>
           </Link>
 
+          <Link href="/car-loan-calculator">
+            <a>Loan Calculator &rarr;</a>
+          </Link>
+
+          <Link href="/car-lease-calculator">
+            <a>Lease Calculator &rarr;</a>
+          </Link>
+
           <Link href="/honda">
             <a>Honda &rarr;</a>
           </Link>
@@ -43,30 +52,14 @@ export default function Home() {
           <Link href="/docs">
             <a>Documentation &rarr;</a>
           </Link>
-
-          <p>Find in-depth information about Next.js features and API.</p>
-
-          <Link href="/learn/start">
-            <a>Learn Start &rarr;</a>
-          </Link>
-          <p>Learn about Next.js in an interactive course with quizzes!</p>
         </div>
       </main>
-
-      <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by <img src="/vercel.svg" alt="Vercel Logo" />
-        </a>
-      </footer>
     </div>
   );
 }
 
 export const getStaticProps: GetStaticProps = async ({}) => {
+  await delay(1000, "truecar home");
   return {
     props: {
       title: "hi",

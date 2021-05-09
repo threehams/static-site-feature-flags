@@ -1,6 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { delay } from "../../../../../lib/delay";
 
 type Props = {
   makeSlug: string;
@@ -37,12 +38,16 @@ export const getStaticProps: GetStaticProps<Props> = async ({
   params,
   locale,
 }) => {
-  console.log(params?.feature);
-  console.log("locale", locale);
+  await delay(1000, "model overview challenger");
+  if (params?.makeSlug !== "honda") {
+    return {
+      notFound: true,
+    };
+  }
   return {
     props: {
-      makeSlug: params?.makeSlug ?? "",
-      modelSlug: params?.modelSlug ?? "",
+      makeSlug: params.makeSlug,
+      modelSlug: (params?.modelSlug as string) ?? "",
       feature: "challenger",
       locale: locale ?? "",
     },

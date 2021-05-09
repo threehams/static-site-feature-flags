@@ -1,14 +1,14 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { delay } from "../../../../lib/delay";
 
 type Props = {
   makeSlug: string;
-  modelSlug: string;
   feature: string;
   locale: string;
 };
-const MakeOverview = ({ makeSlug, modelSlug, feature, locale }: Props) => {
+const MakeOverview = ({ makeSlug, feature, locale }: Props) => {
   const { pathname } = useRouter();
 
   return (
@@ -28,10 +28,16 @@ export const getStaticProps: GetStaticProps<Props> = async ({
   params,
   locale,
 }) => {
+  await delay(1000, "make overview challenger");
+  if (params?.makeSlug !== "honda") {
+    return {
+      notFound: true,
+    };
+  }
+
   return {
     props: {
-      makeSlug: params?.makeSlug ?? "",
-      modelSlug: params?.modelSlug ?? "",
+      makeSlug: params.makeSlug,
       feature: "challenger",
       locale: locale ?? "",
     },

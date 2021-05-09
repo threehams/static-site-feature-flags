@@ -3,6 +3,18 @@ module.exports = {
     return {
       afterFiles: [
         {
+          source: "/:condition(new|used)-cars-for-sale",
+          destination: "/marketplace/:condition",
+        },
+        {
+          source: "/:car-:paymentType(loan|lease)-calculator",
+          destination: "/calculator/:paymentType",
+        },
+        {
+          source: "/",
+          destination: "/home/default/",
+        },
+        {
           source: "/",
           destination: "/home/truecar/",
           has: [
