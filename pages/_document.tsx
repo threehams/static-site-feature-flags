@@ -5,7 +5,7 @@ import Document, {
   NextScript,
   DocumentContext,
 } from "next/document";
-import { delay } from "../../lib/delay";
+import { delay } from "../lib/delay";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
