@@ -1,96 +1,81 @@
 module.exports = {
   async rewrites() {
     return {
-      afterFiles: [
+      beforeFiles: [
         {
-          source: "/:condition(new|used)-cars-for-sale",
-          destination: "/marketplace/:condition",
-        },
-        {
-          source: "/:car-:paymentType(loan|lease)-calculator",
-          destination: "/calculator/:paymentType",
-        },
-        {
-          source: "/",
-          destination: "/home/default/",
-        },
-        {
-          source: "/",
-          destination: "/home/truecar/",
+          source: "/:makeSlug(acura|honda)",
+          destination: "/:host/overview/:makeSlug/challenger",
           has: [
             {
               type: "host",
-              value: "www.local.truecardev.com",
+              value: "(?<host>.*)",
+            },
+            {
+              type: "cookie",
+              key: "critical_flags",
+              value: "feature1challenger",
+            },
+          ],
+        },
+        {
+          source: "/:makeSlug(acura|honda)",
+          destination: "/:host/overview/:makeSlug/control",
+          has: [
+            {
+              type: "host",
+              value: "(?<host>.*)",
+            },
+            {
+              type: "cookie",
+              key: "critical_flags",
+              value: "feature1control",
+            },
+          ],
+        },
+        {
+          source: "/:condition(new|used)-cars-for-sale",
+          destination: "/:host/marketplace/:condition",
+          has: [
+            {
+              type: "host",
+              value: "(?<host>.*)",
+            },
+          ],
+        },
+        {
+          source: "/:car-:paymentType(loan|lease)-calculator",
+          destination: "/:host/calculator/:paymentType",
+          has: [
+            {
+              type: "host",
+              value: "(?<host>.*)",
             },
           ],
         },
         {
           source: "/",
-          destination: "/home/default/",
+          destination: "/:host/home/default",
+          has: [
+            {
+              type: "host",
+              value: "(?<host>.*)",
+            },
+          ],
         },
       ],
-      fallback: [
+      afterFiles: [
         {
-          source: "/:makeSlug",
-          destination: "/overview/:makeSlug/challenger",
+          source: "/:path*",
+          destination: "/:host/:path*",
           has: [
             {
-              type: "cookie",
-              key: "critical_flags",
-              value: "feature1challenger",
-            },
-          ],
-        },
-        {
-          source: "/:makeSlug",
-          destination: "/overview/:makeSlug/control",
-          has: [
-            {
-              type: "cookie",
-              key: "critical_flags",
-              value: "feature1control",
-            },
-          ],
-        },
-        {
-          source: "/:makeSlug/:modelSlug",
-          destination: "/overview/:makeSlug/:modelSlug/challenger",
-          has: [
-            {
-              type: "cookie",
-              key: "critical_flags",
-              value: "feature1challenger",
-            },
-          ],
-        },
-        {
-          source: "/:makeSlug/:modelSlug",
-          destination: "/overview/:makeSlug/:modelSlug/control",
-          has: [
-            {
-              type: "cookie",
-              key: "critical_flags",
-              value: "feature1control",
+              type: "host",
+              value: "(?<host>.*)",
             },
           ],
         },
       ],
     };
-  },
-  i18n: {
-    locales: ["truecar", "pnc"],
-    domains: [
-      {
-        domain: "pnc.local.truecardev.com",
-        defaultLocale: "pnc",
-      },
-      {
-        domain: "www.local.truecardev.com",
-        defaultLocale: "truecar",
-      },
-    ],
-    defaultLocale: "truecar",
-    localeDetection: false,
   },
   typescript: {
     // Do not block local builds on TS errors
