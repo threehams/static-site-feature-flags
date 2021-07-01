@@ -13,6 +13,7 @@ module.exports = {
           ],
         },
       ],
+      // Comment out afterFiles to fix above rewrite
       afterFiles: [
         {
           source: "/:path*",

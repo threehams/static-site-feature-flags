@@ -7,12 +7,12 @@ export default function Home({}: HomeProps) {
   return (
     <div>
       <Head>
-        <title>Partner Next App</title>
+        <title>Docs Page</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
-        <h1 className="mb-4">Home</h1>
+        <h1 className="mb-4">Docs</h1>
       </main>
     </div>
   );
